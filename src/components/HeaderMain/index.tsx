@@ -34,7 +34,6 @@ const index = () => {
           </Text>
         </View>
       </View>
-      <View></View>
     </View>
   );
 };

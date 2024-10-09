@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { Category } from "../../models";
 import categoriesGetir from "../../../assets/categoriesGetir";
@@ -8,13 +8,13 @@ const Index = () => {
   const [categories, setCategories] = useState<Category[]>(categoriesGetir);
 
   return (
-    <View>
+    <TouchableOpacity>
       <View style={styles.listContainer}>
         {categories.map((item) => (
           <CategoryItem key={item.id} item={item} />
         ))}
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
