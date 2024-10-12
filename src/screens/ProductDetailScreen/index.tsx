@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import ImageCarousel from "../../components/ImageCarousel";
 import { Product } from "../../models";
 import DetailBox from "../../components/DetailBox";
+import DetailProperty from "../../components/DetailProperty";
 const index = (props) => {
   const [product, setProduct] = useState<Product>();
   useEffect(() => {
@@ -20,6 +21,17 @@ const index = (props) => {
         name={product.name}
         quantity={product.miktar}
       />
+      <Text
+        style={{
+          paddingHorizontal: 10,
+          paddingVertical: 14,
+          color: "gray",
+          fontWeight: "600",
+        }}
+      >
+        Detaylar
+      </Text>
+      <DetailProperty />
     </View>
   );
 };
