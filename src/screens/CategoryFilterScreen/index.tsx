@@ -1,6 +1,9 @@
 import { View, Text, ScrollView } from "react-native";
 import React, { useState } from "react";
 import CategoryFiltering from "../../components/CategoryFiltering";
+import TypeFiltering from "../../components/TypeFiltering";
+import ProductItem from "../../components/ProductItem";
+import ProductsContainer from "../../components/ProductsContainer";
 const index = (props) => {
   const [category, setCategory] = useState<Category>(
     props.route.params.category,
@@ -8,6 +11,8 @@ const index = (props) => {
   return (
     <ScrollView>
       <CategoryFiltering category={category} />
+      <TypeFiltering />
+      <ProductsContainer />
     </ScrollView>
   );
 };
