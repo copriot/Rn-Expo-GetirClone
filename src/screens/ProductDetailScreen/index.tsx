@@ -1,9 +1,10 @@
-import { View, Text, ActivityIndicator } from "react-native";
+import { View, Text, ActivityIndicator, ScrollView } from "react-native";
 import React, { useState, useEffect } from "react";
 import ImageCarousel from "../../components/ImageCarousel";
 import { Product } from "../../models";
 import DetailBox from "../../components/DetailBox";
 import DetailProperty from "../../components/DetailProperty";
+import CardButton from "../../components/CardButton";
 const index = (props) => {
   const [product, setProduct] = useState<Product>();
   useEffect(() => {
@@ -14,7 +15,7 @@ const index = (props) => {
     return <ActivityIndicator color={"#5D3EBD"} />;
   }
   return (
-    <View>
+    <ScrollView>
       <ImageCarousel images={product?.images} />
       <DetailBox
         price={product.fiyat}
@@ -32,7 +33,8 @@ const index = (props) => {
         Detaylar
       </Text>
       <DetailProperty />
-    </View>
+      <CardButton />
+    </ScrollView>
   );
 };
 
