@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet } from "react-native";
-const { height } = Dimensions.get("window");
+const { height, width } = Dimensions.get("window");
 const styles = StyleSheet.create({
   headerMain: {
     height: height * 0.064,
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    paddingLeft: 10,
+    paddingLeft: width * 0.12,
   },
 });
 export default styles;

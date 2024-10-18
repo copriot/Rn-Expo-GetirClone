@@ -1,17 +1,38 @@
-import { View, Text, TouchableOpacity, Dimensions } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Dimensions,
+  ScrollView,
+} from "react-native";
 import React from "react";
 import { FlatList } from "react-native-gesture-handler";
 import productsGetir from "../../../assets/productsGetir";
 import CartItem from "../../components/CartItem";
+import ProductItem from "../../components/ProductItem";
 
 const { width, height } = Dimensions.get("window");
 const index = () => {
   return (
     <View style={{ flex: 1 }}>
-      <FlatList
-        data={productsGetir.slice(0, 4)}
-        renderItem={({ item }) => <CartItem product={item} />}
-      />
+      <ScrollView style={{ flex: 1 }}>
+        <FlatList
+          data={productsGetir.slice(0, 3)}
+          renderItem={({ item }) => <CartItem product={item} />}
+        />
+        <Text style={{ padding: 15, fontWeight: "bold", color: "5d3ebd" }}>
+          Önerilen Ürünler
+        </Text>
+        <ScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          bounces={true}
+        >
+          {productsGetir.map((item, index) => (
+            <ProductItem key={index} item={item} />
+          ))}
+        </ScrollView>
+      </ScrollView>
       <View
         style={{
           height: height * 0.12,
@@ -19,6 +40,9 @@ const index = () => {
           alignItems: "center",
           paddingHorizontal: "4%",
           backgroundColor: "#fefefe",
+          position: "absolute",
+          bottom: 0,
+          width: "100%",
         }}
       >
         <TouchableOpacity
