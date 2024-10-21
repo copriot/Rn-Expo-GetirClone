@@ -22,11 +22,25 @@ const index = ({ product }: CartItemProps) => {
           backgroundColor: "white",
         }}
       >
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Image
-            style={{ width: height * 0.09, height: height * 0.09 }}
-            source={{ uri: product.image }}
-          />
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <View
+            style={{
+              borderWidth: 0.5,
+              borderColor: "gray",
+              borderRadius: 10,
+              padding: 4,
+            }}
+          >
+            <Image
+              style={{ width: height * 0.09, height: height * 0.09 }}
+              source={{ uri: product.image }}
+            />
+          </View>
           <View style={{ marginLeft: 8 }}>
             <Text
               style={{ fontSize: 13, fontWeight: "600", maxWidth: width * 0.4 }}

@@ -10,15 +10,20 @@ import { FlatList } from "react-native-gesture-handler";
 import productsGetir from "../../../assets/productsGetir";
 import CartItem from "../../components/CartItem";
 import ProductItem from "../../components/ProductItem";
-
+import { connect } from "react-redux";
+import { Product } from "../../models";
 const { width, height } = Dimensions.get("window");
-const index = () => {
+const index = ({
+  cartItems,
+}: {
+  cartItems: { product: Product; quantity: number }[];
+}) => {
   return (
     <View style={{ flex: 1 }}>
       <ScrollView style={{ flex: 1 }}>
         <FlatList
-          data={productsGetir.slice(0, 3)}
-          renderItem={({ item }) => <CartItem product={item} />}
+          data={cartItems}
+          renderItem={({ item }) => <CartItem product={item.product} />}
         />
         <Text style={{ padding: 15, fontWeight: "bold", color: "5d3ebd" }}>
           Önerilen Ürünler
@@ -89,5 +94,11 @@ const index = () => {
     </View>
   );
 };
+const mapStateToProps = (state) => {
+  const { cartItems } = state;
+  return {
+    cartItems: cartItems,
+  };
+};
 
-export default index;
+export default connect(mapStateToProps, null)(index);
