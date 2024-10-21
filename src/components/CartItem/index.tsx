@@ -1,12 +1,24 @@
-import { View, Text, Image, Dimensions } from "react-native";
+import { View, Text, Image, Dimensions, TouchableOpacity } from "react-native";
 import React from "react";
 import { Product } from "../../models";
+import { connect } from "react-redux";
+import * as actions from "../../redux/actions/cartActions";
 
 type CartItemProps = {
   product: Product;
+  quantity: number;
+  removeFromCart: (product: Product) => void;
+  addToCart: (product: Product) => void; // Yeni fonksiyonu ekledik
 };
+
 const { width, height } = Dimensions.get("window");
-const index = ({ product }: CartItemProps) => {
+
+const Index = ({
+  product,
+  quantity,
+  removeFromCart,
+  addToCart,
+}: CartItemProps) => {
   return (
     <View style={{ width: "100%", backgroundColor: "white" }}>
       <View
@@ -22,12 +34,7 @@ const index = ({ product }: CartItemProps) => {
           backgroundColor: "white",
         }}
       >
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
           <View
             style={{
               borderWidth: 0.5,
@@ -85,14 +92,15 @@ const index = ({ product }: CartItemProps) => {
             shadowColor: "gray",
           }}
         >
-          <View
+          <TouchableOpacity
+            onPress={() => removeFromCart(product)}
             style={{
               flex: 1,
               alignItems: "center",
             }}
           >
             <Text>-</Text>
-          </View>
+          </TouchableOpacity>
           <View
             style={{
               flex: 1,
@@ -103,16 +111,25 @@ const index = ({ product }: CartItemProps) => {
             }}
           >
             <Text style={{ color: "white", fontWeight: "bold", fontSize: 12 }}>
-              4
+              {quantity}
             </Text>
           </View>
-          <View style={{ flex: 1, alignItems: "center" }}>
+          <TouchableOpacity style={{ flex: 1, alignItems: "center" }}>
             <Text>+</Text>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
   );
 };
 
-export default index;
+// Redux ile bağlantı
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeFromCart: (product: Product) =>
+      dispatch(actions.removeFromCart(product)),
+    addToCart: (product: Product) => dispatch(actions.addToCart(product)), // Yeni fonksiyonu ekledik
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Index);

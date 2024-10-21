@@ -33,7 +33,7 @@ const index = (props) => {
         Detaylar
       </Text>
       <DetailProperty />
-      <CardButton />
+      <CardButton item={product} />
     </ScrollView>
   );
 };
